@@ -25,6 +25,9 @@
   },
   "devDependencies": {
     "@remix-run/dev": "^2.16.8",
+    "@remix-run/fs-routes": "^2.16.8",
+    "@remix-run/route-config": "^2.16.8",
+    "@remix-run/routes-option-adapter": "^2.16.8",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
@@ -40,7 +43,7 @@
     "tailwindcss": "^3.4.4",
     "typescript": "^5.1.6",
     "vite": "^6.0.0",
-    "vite-tsconfig-paths": "^4.2.1"
+    "vite-tsconfig-paths": "^4.3.2"
   },
   "engines": {
     "node": ">=20.0.0"

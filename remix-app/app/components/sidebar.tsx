@@ -29,7 +29,10 @@ export default function Sidebar({contacts, q}) {
 
     return (
         <div id="sidebar" className="flex flex-col w-[22rem] bg-[#f7f7f7] border-r border-r-[#e3e3e3]">
-        <h1 className="flex items-center text-base font-medium m-0 px-8 py-4 border-t border-t-[#e3e3e3] order-1 leading-none before:mr-2 before:relative before:top-[1px]">Remix Contacts</h1>
+        <h1 className="flex items-center text-base font-medium m-0 px-8 py-4 border-t border-t-[#e3e3e3] order-1 leading-none before:mr-2 before:relative before:top-[1px]">
+          
+          <Link to="/about">About us</Link>
+          </h1>
         <div className="flex items-center py-4 px-8 gap-2 border-b border-b-[#e3e3e3]">
           <Form id="search-form" role="search" className="relative" 
             onChange={(event) => {

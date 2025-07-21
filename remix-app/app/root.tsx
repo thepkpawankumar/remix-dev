@@ -8,25 +8,18 @@ import {
   useLoaderData,
   useNavigation
 } from "@remix-run/react";
-import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
+import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
 import "./app.css";
-import Sidebar from "./components/sidebar";
-import { createEmptyContact, getContacts } from "~/data";
+import { createEmptyContact } from "./data";
 
-export const loader = async ({request}: LoaderFunctionArgs) => {
 
-  const url = new URL(request.url);
-  const q = url.searchParams.get('q');
-
-    const contacts = await getContacts(q);
-    return {contacts, q};
-}
 export const action = async () => {
   const contact = await createEmptyContact();
   return redirect(`/contacts/${contact.id}/edit`);
 };
+
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -43,8 +36,6 @@ export const links: LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
 
-  const {contacts, q} = useLoaderData<typeof loader>();
-  
   return (
     <html lang="en" className="h-full m-0 leading-[1.5] text-[#121212]">
       <head>
@@ -55,7 +46,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="flex w-full h-full m-0 leading-[1.5] text-[#121212]">
        
-        <Sidebar contacts={contacts} q={q} />
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -65,19 +55,5 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  
-  const navigation = useNavigation();
-  const searching =
-  navigation.location &&
-  new URLSearchParams(navigation.location.search).has(
-    "q"
-  );
-
-  return (
-    <div id="detail"  className={
-      navigation.state === "loading" && !searching ? "loading" : ""
-    }>
-    <Outlet />
-    </div>
-  );
+  return <Outlet />
 }
